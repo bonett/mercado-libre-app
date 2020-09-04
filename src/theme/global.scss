@@ -1,13 +1,10 @@
 @import './utilities/reset.scss';
 @import './utilities/variables.scss';
 
-html {
-  font-family: $lato;
-}
-
 body {
   background-color: $steel;
   color: $dark;
+  font-family: $source;
   font-size: 14px;
   line-height: 1.42857143;
   overflow-x: hidden !important
@@ -16,6 +13,10 @@ body {
 * {
   outline: none !important;
   text-decoration: none;
+}
+
+a, button {
+  cursor: pointer;
 }
 
 input {

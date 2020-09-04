@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Breadcrumb = styled.div`
-    padding: 16px 0;
+    margin: 16px 0;
 `;
 Breadcrumb.displayName = 'Breadcrumb';
 

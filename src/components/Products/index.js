@@ -11,12 +11,12 @@ const ProductsComponent = () => {
             <SectionCard>
                 <ProductDetailComponent />
             </SectionCard>
-            <SectionCard>
+            {/* <SectionCard>
                 <ProductItemComponent />
                 <ProductItemComponent />
                 <ProductItemComponent />
                 <ProductItemComponent />
-            </SectionCard>
+            </SectionCard> */}
         </>
     );
 };
