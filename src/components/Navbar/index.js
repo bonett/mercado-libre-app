@@ -1,6 +1,6 @@
 import React from 'react';
 import LogoComponent from '../Logo';
-import SearchComponent from '../Search-bar';
+import SearchComponent from '../Searchbar';
 import { Header, Navbar } from './navbar.styled';
 
 const NavbarComponent = () => {

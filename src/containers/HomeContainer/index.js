@@ -1,5 +1,6 @@
 import React from 'react';
-import BreadcrumbComponent from '../../components/breadcrumb';
+import BreadcrumbComponent from '../../components/Breadcrumb';
+import ProductsComponent from '../../components/Products';
 
 const HomeContainer = () => {
     return (
@@ -9,9 +10,7 @@ const HomeContainer = () => {
                     <BreadcrumbComponent />
                 </section>
                 <main>
-                    <section>
-                        oas
-                    </section>
+                    <ProductsComponent />
                 </main>
             </div>
         </React.Fragment>

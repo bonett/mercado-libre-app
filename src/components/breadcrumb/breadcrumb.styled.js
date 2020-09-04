@@ -13,6 +13,7 @@ ListItem.displayName = 'ListItem';
 export const Item = styled.li`
     color: #999999;
     display: inline;
+    font-size: 14px;
     margin-right: 10px;
 
     &:after {
