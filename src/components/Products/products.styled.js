@@ -9,14 +9,26 @@ SectionCard.displayName = 'SectionCard';
 
 export const Article = styled.article`
     align-items: center;
-    border-bottom: 1px solid #EEEEEE;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    position: relative;
     width: 100%;
 
+    &:after {
+        content: '';
+        position: absolute;
+        width: 95.6%;
+        height: 1px;
+        background: #EEEEEE;
+        top: 100%;
+        left: 26px;
+    }
+
     &:last-child {
-        border-bottom: 1px solid #FFFFFF;
+        &:after {
+            background: none;
+        }
     }
 `;
 Article.displayName = 'Article';
