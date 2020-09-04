@@ -1,7 +1,7 @@
 import React from 'react';
-import { Header, Navbar } from './navbar.styled';
 import LogoComponent from '../Logo';
 import SearchComponent from '../Search-bar';
+import { Header, Navbar } from './navbar.styled';
 
 const NavbarComponent = () => {
     return (

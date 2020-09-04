@@ -1,15 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavbarComponent from '../components/Nav-bar';
+import HomeContainer from './HomeContainer';
 
 const RouteApp = () => {
     return (
         <Router>
             <React.Fragment>
-                <NavbarComponent />
+                <React.Fragment>
+                    <NavbarComponent />
+                </React.Fragment>
                 <Switch>
                     <Route exact path="/">
-                        <h1>Hola</h1>
+                        <HomeContainer />
                     </Route>
                 </Switch>
             </React.Fragment>
