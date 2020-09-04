@@ -9,10 +9,15 @@ SectionCard.displayName = 'SectionCard';
 
 export const Article = styled.article`
     align-items: center;
+    border-bottom: 1px solid #EEEEEE;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
+
+    &:last-child {
+        border-bottom: 1px solid #FFFFFF;
+    }
 `;
 Article.displayName = 'Article';
 
@@ -29,11 +34,47 @@ export const Image = styled.img`
 Image.displayName = 'Image';
 
 export const Description = styled.div`
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 150px;
     width: 60%;
 `;
 Description.displayName = 'Description';
 
+export const Price = styled.h4`
+    font-size: 24px;
+    margin-bottom: 22px;
+`;
+Price.displayName = 'Price';
+
+export const Name = styled.h2`
+    color: #666666;
+    font-size: 18px;
+    font-weight: 400;
+`;
+Name.displayName = 'Name';
+
+export const Status = styled.h5`
+    color: #666666;
+    font-size: 18px;
+    font-weight: 400;
+`;
+Status.displayName = 'Status';
+
 export const Location = styled.div`
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 122px;
     width: 20%;
 `;
 Location.displayName = 'Location';
+
+export const Place = styled.h6`
+    color: #999999;
+    font-size: 12px;
+`;
+Place.displayName = 'Place';
