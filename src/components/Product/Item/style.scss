@@ -3,17 +3,18 @@
 .item {
     display: grid;
     grid-template-areas: "cover caption location";
-    padding: 32px;  
+    grid-template-columns: 180px 1fr 200px;
+    padding: 16px;  
     position: relative;  
 
     &:after {
         content: '';
         position: absolute;
-        width: 95.6%;
+        width: 96%;
         height: 1px;
         background: $steel;
         top: 100%;
-        left: 26px;
+        left: 24px;
     }
 
     &:last-child {
@@ -38,30 +39,41 @@
         grid-area: caption;
         flex-direction: column;
         justify-content: flex-start;
+        padding: 10px 16px;
         
         &_price {
+            color: $dark;
             font-size: 24px;
             margin-bottom: 22px;
+
+            span {
+                margin-left: 10px;
+                vertical-align: text-bottom;
+            }
         }
 
         &_title {
-            color: $plate;
+            color: $dark;
             font-size: 18px;
             font-weight: 400;
+            text-transform: capitalize;
         }
 
         &_reference {
-            color: $plate;
+            color: $dark;
             font-size: 18px;
             font-weight: 400;
+            text-transform: capitalize;
         }
     }
 
     &__location {
         grid-area: location;
+        padding: 20px 0;
 
         &_origin {
             color: $gray;
+            text-transform: capitalize;
         }
     }
 }

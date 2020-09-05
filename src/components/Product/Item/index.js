@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const ProductItemComponent = () => {
+    const shippingIcon = require('../../../assets/img/ic_shipping@2x.png.png.png');
     return (
         <article className="item">
             <div className="item__thumbnail">
@@ -13,6 +14,9 @@ const ProductItemComponent = () => {
             <div className="item__caption">
                 <h3 className="item__caption_price">
                     $ 1.980
+                    <span>
+                        <img src={shippingIcon} alt="shiping_car" className="icon-xs" />
+                    </span>
                 </h3>
                 <h2 className="item__caption_title">
                     Apple Ipod touch 5g 16gb Negro Igual A Nuevo

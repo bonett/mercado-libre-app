@@ -74,3 +74,10 @@ input[type="search"] {
       margin-bottom: 60px;
   }
 }
+
+.icon {
+  &-xs {
+    height: 18px;
+    width: 18px;
+  }
+}
