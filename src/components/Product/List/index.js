@@ -8,6 +8,8 @@ const ProductListComponent = () => {
         <>
             <ProductItemComponent />
             <ProductItemComponent />
+            <ProductItemComponent />
+            <ProductItemComponent />
         </>
     );
 };

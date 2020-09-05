@@ -4,7 +4,7 @@ import NavbarComponent from '../components/Navbar';
 import BreadcrumbComponent from '../components/Breadcrumb';
 import HomeContainer from './HomeContainer';
 
-const RouteApp = () => {
+const AppContainer = () => {
     return (
         <Router>
             <section>
@@ -18,10 +18,16 @@ const RouteApp = () => {
                     <Route exact path="/">
                         <HomeContainer />
                     </Route>
+                    <Route exact path="/items">
+                        <HomeContainer />
+                    </Route>
+                    <Route exact path="/items/:id">
+                        <HomeContainer />
+                    </Route>
                 </Switch>
             </section>
         </Router>
     );
 };
 
-export default RouteApp;
+export default AppContainer;
