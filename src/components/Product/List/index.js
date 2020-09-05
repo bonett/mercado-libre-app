@@ -5,12 +5,12 @@ import ProductItemComponent from '../Item';
 
 const ProductListComponent = () => {
     return (
-        <>
+        <React.Fragment>
             <ProductItemComponent />
             <ProductItemComponent />
             <ProductItemComponent />
             <ProductItemComponent />
-        </>
+        </React.Fragment>
     );
 };
 
