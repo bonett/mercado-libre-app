@@ -5,24 +5,26 @@ import InputSearchComponent from './Input';
 
 import './style.scss';
 
-const SearchComponent = ({ handleInputSearch, searchValue }) => {
+const SearchComponent = ({ handleInputSearch, handleSearchButton, searchValue }) => {
     return (
-        <form
-            action=""
-            method="GET"
-            role="search"
-        >
-            <InputSearchComponent handleInputSearch={handleInputSearch} searchValue={searchValue} />
+        <form action={`http://localhost:3000/items${searchValue}`} method="POST" role="search">
+            <InputSearchComponent
+                handleInputSearch={handleInputSearch}
+                searchValue={searchValue}
+                handleSearchButton={handleSearchButton}
+            />
         </form>
     );
 };
 
 SearchComponent.propTypes = {
-    handleInputSearch: PropTypes.func.isRequired
+    handleInputSearch: PropTypes.func.isRequired,
+    handleSearchButton: PropTypes.func.isRequired,
+    searchValue: PropTypes.string
 };
 
 SearchComponent.defaultProps = {
-    searchValue: PropTypes.string
+    searchValue: ''
 };
 
 export default SearchComponent;

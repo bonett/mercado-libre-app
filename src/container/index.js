@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 import NavbarComponent from '../components/Navbar';
 import BreadcrumbComponent from '../components/Breadcrumb';
 import ProductListComponent from '../components/Product/List';
@@ -8,30 +9,48 @@ import SkeletonComponent from '../components/Skeleton';
 
 const AppContainer = () => {
     const [initial, setInitial] = useState({
-        queryString: '',
+        queryString: 'ipod',
         breadcrumb: null,
         isLoading: false,
-        products: null
+        products: null,
     });
 
-    useEffect(() => {
-        async function getProducts() {
-            try {
-                const response = await fetch(
-                    'https://api.mercadolibre.com/sites/MLA/search?q=ipod'
-                );
-                const data = await response.json();
+    const handleSearchButton = (e) => {
+        e.preventDefault();
+
+        const { queryString } = initial;
+        axios({
+            method: 'get',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            mode: 'no-cors',
+            url: `http://localhost:7000/items?q=${queryString}`
+        })
+            .then((response) => {
+                console.log(response.json());
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        /* const { queryString } = initial;
+        fetch(`http://localhost:7000/items?q=${queryString}`, {
+            method: 'GET',
+            mode: 'no-cors'
+        })
+            .then((response) => response.json())
+            .then((data) => {
                 console.log(data);
                 setInitial({ products: data });
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        getProducts();
-    }, []);
+                return data;
+            })
+            .catch((err) => {
+                console.log(err);
+                return err;
+            }); */
+    };
 
     const handleInputSearch = (e) => {
-        console.log(e.target.value);
         setInitial({ queryString: e.target.value });
     };
 
@@ -42,6 +61,7 @@ const AppContainer = () => {
                     <NavbarComponent
                         handleInputSearch={handleInputSearch}
                         searchValue={initial.queryString}
+                        handleSearchButton={handleSearchButton}
                     />
                 </header>
                 <section className="wrapper__breadcrumb">

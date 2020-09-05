@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const InputSearchComponent = ({ handleInputSearch, searchValue }) => {
+const InputSearchComponent = ({ handleInputSearch, handleSearchButton, searchValue }) => {
     const search = require('../../../../assets/img/ic_Search@2x.png.png.png');
     return (
         <div className="form-control">
@@ -18,7 +18,7 @@ const InputSearchComponent = ({ handleInputSearch, searchValue }) => {
                 onChange={handleInputSearch}
                 defaultValue={searchValue}
             />
-            <button type="submit" className="form-control_btn">
+            <button type="submit" value="submit" className="form-control_btn" onClick={(e) => handleSearchButton(e)}>
                 <img className="icon" src={search} alt="search" />
             </button>
         </div>
@@ -26,11 +26,9 @@ const InputSearchComponent = ({ handleInputSearch, searchValue }) => {
 };
 
 InputSearchComponent.propTypes = {
-    handleInputSearch: PropTypes.func.isRequired
-};
-
-InputSearchComponent.defaultProps = {
-    searchValue: PropTypes.string
+    handleInputSearch: PropTypes.func.isRequired,
+    handleSearchButton: PropTypes.func.isRequired,
+    searchValue: PropTypes.string.isRequired
 };
 
 export default InputSearchComponent;

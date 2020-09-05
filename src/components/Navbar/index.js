@@ -6,7 +6,7 @@ import SearchComponent from './Navbar-Search';
 
 import './style.scss';
 
-const NavbarComponent = ({ handleInputSearch, searchValue }) => {
+const NavbarComponent = ({ handleInputSearch, handleSearchButton, searchValue }) => {
     return (
         <nav className="navbar">
             <div className="container">
@@ -18,6 +18,7 @@ const NavbarComponent = ({ handleInputSearch, searchValue }) => {
                         <SearchComponent
                             handleInputSearch={handleInputSearch}
                             searchValue={searchValue}
+                            handleSearchButton={handleSearchButton}
                         />
                     </div>
                 </div>
@@ -27,11 +28,13 @@ const NavbarComponent = ({ handleInputSearch, searchValue }) => {
 };
 
 NavbarComponent.propTypes = {
-    handleInputSearch: PropTypes.func.isRequired
+    handleInputSearch: PropTypes.func.isRequired,
+    handleSearchButton: PropTypes.func.isRequired,
+    searchValue: PropTypes.string
 };
 
 NavbarComponent.defaultProps = {
-    searchValue: PropTypes.string
+    searchValue: ''
 };
 
 export default NavbarComponent;
