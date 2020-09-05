@@ -1,0 +1,75 @@
+@import './../../../theme/utilities/variables.scss';
+
+.detail {
+    display: grid;
+    grid-template-areas: "main aside";
+    grid-template-columns: 1fr 300px;
+    padding: 32px;
+    position: relative;  
+
+    &__media {
+        align-items: center;
+        display: flex;
+        grid-area: main;
+        flex-direction: column;
+        justify-content: center;
+
+        &__cover {
+            padding: 0 32px 0 0;
+            
+            &_image {
+                border-radius: 4px;
+                height: 620px;
+                width: auto; 
+            }
+        }
+
+        &__description {
+            padding: 0 32px 0 0;
+
+            &_heading {
+                color: $dark;
+                font-size: 28px;
+                padding: 32px 0;
+            }
+
+            &_paragraph {
+                color: $gray;
+                font-size: 16px;
+            }
+        }
+    }
+
+    &__info {
+        grid-area: aside;
+
+        &_shell {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        &_name {
+            font-size: 24px;
+            font-weight: 500;  
+        }
+
+        &_price {
+            font-size: 46px;
+            font-weight: 400;
+            padding: 32px 0;
+        }
+
+        &_btn {
+            background-color: #3483FA;
+            border-radius: 4px;
+            box-shadow: 0 1px 0 0 rgba(0,0,0, 0.02);
+            color: #FFFFFF;
+            border: 1px solid #3483FA;
+            font-size: 16px;
+            height: 44px;
+            padding: 6px 10px;
+            text-transform: captalize;
+            width: 100%;
+        }
+    }
+}

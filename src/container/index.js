@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavbarComponent from '../components/Navbar';
 import BreadcrumbComponent from '../components/Breadcrumb';
 import ProductListComponent from '../components/Product/List';
+import ProductDetailComponent from '../components/Product/Detail';
 import SkeletonComponent from '../components/Skeleton';
 
 const AppContainer = () => {
     const [initial, setInitial] = useState({
         breadcrumb: null,
-        isLoading: true
+        isLoading: false
     });
     return (
         <Router>
@@ -32,7 +33,7 @@ const AppContainer = () => {
                                             <ProductListComponent />
                                         </Route>
                                         <Route exact path="/items/:id">
-                                            <ProductListComponent />
+                                            <ProductDetailComponent />
                                         </Route>
                                     </Switch>
                                 )

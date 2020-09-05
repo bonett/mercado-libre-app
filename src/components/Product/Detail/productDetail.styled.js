@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+/* import styled from 'styled-components';
 
 export const Product = styled.article`
     align-items: center;
@@ -95,3 +95,4 @@ export const BuyButton = styled.button`
     width: 100%;
 `;
 BuyButton.displayName = 'BuyButton';
+ */
