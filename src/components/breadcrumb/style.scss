@@ -1,0 +1,24 @@
+@import './../../theme/utilities/variables.scss';
+
+
+.breadcrumb {
+    padding: 4px 0;
+
+    &_item {
+        color: $gray;
+        display: inline;
+        font-size: 14px;
+        margin-right: 10px;
+
+        &:after {
+            content: ">";
+            margin-left: 10px;
+
+        }
+
+        &:last-child {
+            color: #666666;
+            font-weight: 800;
+        }
+    }
+}

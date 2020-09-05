@@ -13,9 +13,6 @@ const SearchComponent = () => {
             role="search"
         >
             <InputSearchComponent />
-            {/* <React.Fragment>
-                <ButtonSearchComponent />
-            </React.Fragment> */}
         </form>
     );
 };

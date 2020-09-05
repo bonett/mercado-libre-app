@@ -1,19 +1,20 @@
 /* eslint-disable global-require */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Breadcrumb, ListItem, Item } from './breadcrumb.styled';
+
+import './style.scss';
 
 const BreadcrumbComponent = () => {
     return (
-        <Breadcrumb>
-            <ListItem>
-                <Item>Electrónica Audio y Video</Item>
-                <Item>Ipod</Item>
-                <Item>Reproductores</Item>
-                <Item>Ipod touch</Item>
-                <Item>32gb</Item>
-            </ListItem>
-        </Breadcrumb>
+        <div className="container">
+            <ul className="breadcrumb">
+                <li className="breadcrumb_item">Electrónica Audio y Video</li>
+                <li className="breadcrumb_item">Ipod</li>
+                <li className="breadcrumb_item">Reproductores</li>
+                <li className="breadcrumb_item">Ipod touch</li>
+                <li className="breadcrumb_item">32gb</li>
+            </ul>
+        </div>
     );
 };
 

@@ -1,16 +1,12 @@
 import React from 'react';
-import BreadcrumbComponent from '../../components/Breadcrumb';
-import ProductsComponent from '../../components/Products';
+import ProductListComponent from '../../components/Product/ProductList';
 
 const HomeContainer = () => {
     return (
-        <section>
+        <section className="wrapper">
             <div className="container">
-                <section>
-                    <BreadcrumbComponent />
-                </section>
-                <main>
-                    <ProductsComponent />
+                <main className="wrapper__content">
+                    <ProductListComponent />
                 </main>
             </div>
         </section>

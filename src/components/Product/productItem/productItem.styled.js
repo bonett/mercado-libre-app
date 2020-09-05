@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+/* import styled from 'styled-components';
 
 export const Item = styled.article`
     align-items: center;
@@ -82,4 +82,4 @@ export const Place = styled.h6`
     color: #999999;
     font-size: 12px;
 `;
-Place.displayName = 'Place';
+Place.displayName = 'Place'; */

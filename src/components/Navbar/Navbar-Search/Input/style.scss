@@ -36,12 +36,11 @@
         &_btn {
             background-color: $steel;
             background-image: none;
-            border-radius: 0 2px 2px 0 !important;   
-            border-top: $border-shadow;
-            border-right: $border-shadow;
             border-bottom: $border-shadow;
+            border-radius: 0 2px 2px 0 !important;   
+            border-right: $border-shadow;
+            border-top: $border-shadow;
             border-left: none;
-            cursor: pointer;
             height: 40px;
             position: absolute;
             right: 0;

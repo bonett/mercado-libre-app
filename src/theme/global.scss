@@ -32,7 +32,6 @@ main {
   padding-bottom: 60px;
 }
 
-
 input[type="search"] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -40,11 +39,6 @@ input[type="search"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-}
-
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
 }
 
 .container {
@@ -69,5 +63,17 @@ input[type="search"]::-webkit-search-decoration {
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
+  }
+}
+
+.wrapper {
+  &__breadcrumb {
+      margin: 16px 0;
+  }
+
+  &__content {
+      background-color: $white;
+      border-radius: 4px;
+      box-shadow: $shadow;
   }
 }
