@@ -1,25 +1,28 @@
-/* eslint-disable global-require */
+/* eslint-disable react/default-props-match-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import InputSearchComponent from './Input';
 
 import './style.scss';
 
-const SearchComponent = ({ handleInputSearch }) => {
+const SearchComponent = ({ handleInputSearch, searchValue }) => {
     return (
         <form
             action=""
             method="GET"
             role="search"
-            onChange={handleInputSearch}
         >
-            <InputSearchComponent />
+            <InputSearchComponent handleInputSearch={handleInputSearch} searchValue={searchValue} />
         </form>
     );
 };
 
 SearchComponent.propTypes = {
     handleInputSearch: PropTypes.func.isRequired
+};
+
+SearchComponent.defaultProps = {
+    searchValue: PropTypes.string
 };
 
 export default SearchComponent;

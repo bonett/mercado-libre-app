@@ -8,6 +8,7 @@ import SkeletonComponent from '../components/Skeleton';
 
 const AppContainer = () => {
     const [initial, setInitial] = useState({
+        queryString: '',
         breadcrumb: null,
         isLoading: false,
         products: null
@@ -16,7 +17,9 @@ const AppContainer = () => {
     useEffect(() => {
         async function getProducts() {
             try {
-                const response = await fetch('https://api.mercadolibre.com/sites/MLA/search?q=ipod');
+                const response = await fetch(
+                    'https://api.mercadolibre.com/sites/MLA/search?q=ipod'
+                );
                 const data = await response.json();
                 console.log(data);
                 setInitial({ products: data });
@@ -28,41 +31,37 @@ const AppContainer = () => {
     }, []);
 
     const handleInputSearch = (e) => {
-        console.log('e', e.target.value);
+        console.log(e.target.value);
+        setInitial({ queryString: e.target.value });
     };
 
     return (
         <Router>
             <section>
                 <header>
-                    <NavbarComponent handleInputSearch={handleInputSearch} />
+                    <NavbarComponent
+                        handleInputSearch={handleInputSearch}
+                        searchValue={initial.queryString}
+                    />
                 </header>
                 <section className="wrapper__breadcrumb">
-                    {
-                        initial.breadcrumb && (<BreadcrumbComponent />)
-                    }
+                    {initial.breadcrumb && <BreadcrumbComponent />}
                 </section>
                 <section className="wrapper">
                     <div className="container">
                         <main className="wrapper__content">
-                            {
-                                !initial.isLoading && (
-                                    <Switch>
-                                        <Route exact path="/" />
-                                        <Route exact path="/items">
-                                            <ProductListComponent />
-                                        </Route>
-                                        <Route exact path="/items/:id">
-                                            <ProductDetailComponent />
-                                        </Route>
-                                    </Switch>
-                                )
-                            }
-                            {
-                                initial.isLoading && (
-                                    <SkeletonComponent />
-                                )
-                            }
+                            {!initial.isLoading && (
+                                <Switch>
+                                    <Route exact path="/" />
+                                    <Route exact path="/items">
+                                        <ProductListComponent />
+                                    </Route>
+                                    <Route exact path="/items/:id">
+                                        <ProductDetailComponent />
+                                    </Route>
+                                </Switch>
+                            )}
+                            {initial.isLoading && <SkeletonComponent />}
                         </main>
                     </div>
                 </section>
