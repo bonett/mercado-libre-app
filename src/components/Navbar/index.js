@@ -1,22 +1,23 @@
 import React from 'react';
-import LogoComponent from '../Logo';
-import SearchComponent from '../Searchbar';
-import { Header, Navbar } from './navbar.styled';
+import LogoComponent from './Navbar-Logo';
+import SearchComponent from './Navbar-Search';
+
+import './style.scss';
 
 const NavbarComponent = () => {
     return (
-        <Header>
+        <nav className="navbar">
             <div className="container">
-                <Navbar>
-                    <div className="logo">
+                <div className="navbar__content">
+                    <div className="navbar__logo">
                         <LogoComponent />
                     </div>
-                    <div className="form">
+                    <div className="navbar__form">
                         <SearchComponent />
                     </div>
-                </Navbar>
+                </div>
             </div>
-        </Header>
+        </nav>
     );
 };
 

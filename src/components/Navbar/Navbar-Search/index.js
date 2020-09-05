@@ -2,23 +2,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InputSearchComponent from './Input';
-import ButtonSearchComponent from './button';
-import { SearchBar } from './searchbar.styled';
+
+import './style.scss';
 
 const SearchComponent = () => {
     return (
-        <SearchBar
+        <form
             action=""
             method="GET"
             role="search"
         >
-            <React.Fragment>
-                <InputSearchComponent />
-            </React.Fragment>
-            <React.Fragment>
+            <InputSearchComponent />
+            {/* <React.Fragment>
                 <ButtonSearchComponent />
-            </React.Fragment>
-        </SearchBar>
+            </React.Fragment> */}
+        </form>
     );
 };
 

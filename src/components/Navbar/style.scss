@@ -1,0 +1,27 @@
+@import './../../theme/utilities/variables.scss';
+
+.navbar {
+    background-color: $yellow;
+    box-shadow: $shadow;
+    padding: 8px 0;
+
+    &__content {
+        display: grid;
+        grid-template-areas: "logo search";
+        grid-template-columns: 100px 12fr;
+    }
+
+    &__logo {
+        align-content: center;
+        grid-area: logo;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 4px;
+    }
+
+    &__form {
+        grid-area: search;
+        padding: 6px 0;
+    }
+  }

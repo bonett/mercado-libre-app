@@ -6,16 +6,16 @@ import HomeContainer from './HomeContainer';
 const RouteApp = () => {
     return (
         <Router>
-            <React.Fragment>
-                <React.Fragment>
+            <section>
+                <header>
                     <NavbarComponent />
-                </React.Fragment>
+                </header>
                 <Switch>
                     <Route exact path="/">
                         <HomeContainer />
                     </Route>
                 </Switch>
-            </React.Fragment>
+            </section>
         </Router>
     );
 };

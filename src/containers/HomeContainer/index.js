@@ -4,7 +4,7 @@ import ProductsComponent from '../../components/Products';
 
 const HomeContainer = () => {
     return (
-        <React.Fragment>
+        <section>
             <div className="container">
                 <section>
                     <BreadcrumbComponent />
@@ -13,7 +13,7 @@ const HomeContainer = () => {
                     <ProductsComponent />
                 </main>
             </div>
-        </React.Fragment>
+        </section>
     );
 };
 
