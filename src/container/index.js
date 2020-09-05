@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavbarComponent from '../components/Navbar';
 import BreadcrumbComponent from '../components/Breadcrumb';
@@ -9,13 +9,33 @@ import SkeletonComponent from '../components/Skeleton';
 const AppContainer = () => {
     const [initial, setInitial] = useState({
         breadcrumb: null,
-        isLoading: false
+        isLoading: false,
+        products: null
     });
+
+    useEffect(() => {
+        async function getProducts() {
+            try {
+                const response = await fetch('https://api.mercadolibre.com/sites/MLA/search?q=ipod');
+                const data = await response.json();
+                console.log(data);
+                setInitial({ products: data });
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        getProducts();
+    }, []);
+
+    const handleInputSearch = (e) => {
+        console.log('e', e.target.value);
+    };
+
     return (
         <Router>
             <section>
                 <header>
-                    <NavbarComponent />
+                    <NavbarComponent handleInputSearch={handleInputSearch} />
                 </header>
                 <section className="wrapper__breadcrumb">
                     {
