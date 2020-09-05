@@ -1,0 +1,47 @@
+@import './../../theme/utilities/variables.scss';
+
+.content {
+    display: grid;
+    grid-template-areas: "img text pin";
+    grid-template-columns: 180px 1fr 200px;
+    padding: 16px;  
+    position: relative;
+    
+    &:after {
+        content: '';
+        position: absolute;
+        width: 96%;
+        height: 1px;
+        background: $steel;
+        top: 100%;
+        left: 24px;
+    }
+
+    &:last-child {
+        &:after {
+            background: none;
+        }
+    }
+
+    .media {
+        grid-area: img;
+    }
+
+    .caption {
+        align-items: flex-start;
+        display: flex;
+        grid-area: text;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 10px 16px;
+
+        div {
+            margin-bottom: 12px;
+        }
+    }
+
+    .location {
+        grid-area: pin;
+        padding: 20px 0;
+    }
+}
