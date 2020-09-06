@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import NavbarComponent from '../components/Navbar';
 import BreadcrumbComponent from '../components/Breadcrumb';

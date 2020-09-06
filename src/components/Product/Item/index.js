@@ -23,7 +23,7 @@ const ProductItemComponent = ({ product }) => {
                     </React.Fragment>
                     <React.Fragment>
                         {product.free_shipping && (
-                            <span>
+                            <span className="icon">
                                 <img
                                     src={shippingIcon}
                                     alt="shiping_car"
@@ -34,7 +34,7 @@ const ProductItemComponent = ({ product }) => {
                     </React.Fragment>
                 </h3>
                 <h2 className="item__caption_title">{product.title}</h2>
-                <h2 className="item__caption_reference">{product.condition}</h2>
+                <h2 className="item__caption_reference">{product.condition}!</h2>
             </div>
             <div className="item__location">
                 <h6 className="item__location_origin">{product.address}</h6>
