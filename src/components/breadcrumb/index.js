@@ -11,11 +11,6 @@ const BreadcrumbComponent = ({ categories }) => {
                 {categories.map((category) => {
                     return <li className="breadcrumb_item" key={category}>{category}</li>;
                 })}
-                {/* <li className="breadcrumb_item">Electrónica Audio y Video</li>
-                <li className="breadcrumb_item">Ipod</li>
-                <li className="breadcrumb_item">Reproductores</li>
-                <li className="breadcrumb_item">Ipod touch</li>
-                <li className="breadcrumb_item">32gb</li> */}
             </ul>
         </div>
     );
