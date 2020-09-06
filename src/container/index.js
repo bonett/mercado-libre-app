@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import NavbarComponent from '../components/Navbar';
@@ -8,50 +8,34 @@ import ProductDetailComponent from '../components/Product/Detail';
 import SkeletonComponent from '../components/Skeleton';
 
 const AppContainer = () => {
-    const [initial, setInitial] = useState({
-        queryString: 'ipod',
-        breadcrumb: null,
+    const [data, setData] = useState({
+        response: null,
         isLoading: false,
-        products: null,
+        searchValue: ''
     });
 
-    const handleSearchButton = (e) => {
-        e.preventDefault();
-
-        const { queryString } = initial;
-        axios({
-            method: 'get',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            mode: 'no-cors',
-            url: `http://localhost:7000/items?q=${queryString}`
-        })
+    const loadItems = useCallback(() => {
+        const { queryString } = data.searchValue;
+        axios
+            .get(`http://localhost:7000/items?q=${queryString}`)
             .then((response) => {
-                console.log(response.json());
-            })
-            .catch((err) => {
-                console.log(err);
+                if (response.data) {
+                    setData({
+                        response: response.data,
+                        isLoading: false
+                    });
+                }
             });
-        /* const { queryString } = initial;
-        fetch(`http://localhost:7000/items?q=${queryString}`, {
-            method: 'GET',
-            mode: 'no-cors'
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setInitial({ products: data });
-                return data;
-            })
-            .catch((err) => {
-                console.log(err);
-                return err;
-            }); */
+    }, [data]);
+
+    const handleSearchButton = (e) => {
+        setData({ isLoading: true });
+        e.preventDefault();
+        loadItems();
     };
 
     const handleInputSearch = (e) => {
-        setInitial({ queryString: e.target.value });
+        setData({ searchValue: e.target.value });
     };
 
     return (
@@ -60,28 +44,34 @@ const AppContainer = () => {
                 <header>
                     <NavbarComponent
                         handleInputSearch={handleInputSearch}
-                        searchValue={initial.queryString}
+                        searchValue={data.searchValue}
                         handleSearchButton={handleSearchButton}
                     />
                 </header>
                 <section className="wrapper__breadcrumb">
-                    {initial.breadcrumb && <BreadcrumbComponent />}
+                    {data.response && (
+                        <BreadcrumbComponent categories={data.response.categories} />
+                    )}
                 </section>
                 <section className="wrapper">
                     <div className="container">
                         <main className="wrapper__content">
-                            {!initial.isLoading && (
+                            {!data.isLoading && (
                                 <Switch>
                                     <Route exact path="/" />
                                     <Route exact path="/items">
-                                        <ProductListComponent />
+                                        {data.response && (
+                                            <ProductListComponent
+                                                products={data.response.items}
+                                            />
+                                        )}
                                     </Route>
                                     <Route exact path="/items/:id">
                                         <ProductDetailComponent />
                                     </Route>
                                 </Switch>
                             )}
-                            {initial.isLoading && <SkeletonComponent />}
+                            {data.isLoading && <SkeletonComponent />}
                         </main>
                     </div>
                 </section>

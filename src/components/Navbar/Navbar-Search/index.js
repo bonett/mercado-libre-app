@@ -7,11 +7,10 @@ import './style.scss';
 
 const SearchComponent = ({ handleInputSearch, handleSearchButton, searchValue }) => {
     return (
-        <form action={`http://localhost:3000/items${searchValue}`} method="POST" role="search">
+        <form action={`http://localhost:3000/items${searchValue}`} method="GET" role="search" onSubmit={handleSearchButton}>
             <InputSearchComponent
                 handleInputSearch={handleInputSearch}
                 searchValue={searchValue}
-                handleSearchButton={handleSearchButton}
             />
         </form>
     );

@@ -1,19 +1,25 @@
 /* eslint-disable global-require */
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { object } from 'prop-types';
 import ProductItemComponent from '../Item';
 
-const ProductListComponent = () => {
+const ProductListComponent = ({ products }) => {
+    console.log('asdasda', products);
     return (
         <React.Fragment>
-            <ProductItemComponent />
-            <ProductItemComponent />
-            <ProductItemComponent />
-            <ProductItemComponent />
+            {products.map((product) => {
+                return <ProductItemComponent product={product} key={product.id} />;
+            })}
         </React.Fragment>
     );
 };
 
-ProductListComponent.propTypes = {};
+ProductListComponent.propTypes = {
+    products: PropTypes.arrayOf(object)
+};
+
+ProductListComponent.defaultProps = {
+    products: []
+};
 
 export default ProductListComponent;
