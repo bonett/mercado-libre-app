@@ -1,23 +1,39 @@
 /* eslint-disable react/jsx-curly-brace-presence */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import BreadcrumbComponent from '../../components/Breadcrumb';
 import ProductListComponent from '../../components/Product/List';
 import SkeletonComponent from '../../components/Skeleton';
-import { fetchDataByName } from '../../actions';
+import { fetchDataByName, itemDetailSelected, fetchDataById } from '../../actions';
 
 const ItemsContainer = ({
+    history,
     searching,
     fetchDataByName,
     categories,
     items,
     loading,
+    getSelectedItem,
+    fetchDataById
 }) => {
     const fetchingData = () => {
         if (searching !== '') {
             fetchDataByName(searching);
         }
+    };
+
+    const dispatchEvents = (id) => {
+        getSelectedItem(id);
+        fetchDataById(id);
+    };
+
+    const handleClickItem = (item) => {
+        const { id } = item;
+        dispatchEvents(id);
+        setTimeout(() => {
+            history.push(`/items/${id}`);
+        }, 500);
     };
 
     useEffect(() => {
@@ -32,13 +48,14 @@ const ItemsContainer = ({
             <section>
                 <section className="wrapper">
                     <div className="container">
-                        <Link to={'items/123'}>Go toDetails</Link>
                         <main className="wrapper__content">
                             {loading && <SkeletonComponent />}
                             {!loading && (
-                                <ProductListComponent products={items} />
+                                <ProductListComponent
+                                    products={items}
+                                    handleClickItem={handleClickItem}
+                                />
                             )}
-                            <SkeletonComponent />
                         </main>
                     </div>
                 </section>
@@ -52,14 +69,19 @@ const mapStateToProps = (state) => {
         searching: state.data.searching,
         categories: state.data.categories,
         items: state.data.items,
-        loading: state.data.loading,
+        loading: state.data.loading
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchDataByName: (search) => dispatch(fetchDataByName(search)),
+        getSelectedItem: (id) => dispatch(itemDetailSelected(id)),
+        fetchDataById: (id) => dispatch(fetchDataById(id))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemsContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withRouter(ItemsContainer));

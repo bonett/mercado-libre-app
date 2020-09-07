@@ -28,16 +28,19 @@ const HomeContainer = ({ history, searching, getSearchValue }) => {
     );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         searching: state.data.searching
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         getSearchValue: (search) => dispatch(getSearchValue(search))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomeContainer));
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withRouter(HomeContainer));

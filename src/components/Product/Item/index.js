@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const ProductItemComponent = ({ product }) => {
+const ProductItemComponent = ({ product, handleClickItem }) => {
     const shippingIcon = require('../../../assets/img/ic_shipping@2x.png.png.png');
     return (
-        <article className="item">
+        <article className="item" onClick={() => handleClickItem(product)}>
             <div className="item__thumbnail">
                 <img
                     className="item__thumbnail_image"
@@ -34,7 +34,9 @@ const ProductItemComponent = ({ product }) => {
                     </React.Fragment>
                 </h3>
                 <h2 className="item__caption_title">{product.title}</h2>
-                <h2 className="item__caption_reference">{product.condition}!</h2>
+                <h2 className="item__caption_reference">
+                    {product.condition}!
+                </h2>
             </div>
             <div className="item__location">
                 <h6 className="item__location_origin">{product.address}</h6>
@@ -51,7 +53,8 @@ ProductItemComponent.propTypes = {
         free_shipping: PropTypes.bool.isRequired,
         price: PropTypes.object.isRequired,
         address: PropTypes.string.isRequired
-    }).isRequired
+    }).isRequired,
+    handleClickItem: PropTypes.func.isRequired
 };
 
 export default ProductItemComponent;

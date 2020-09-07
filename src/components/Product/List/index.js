@@ -3,19 +3,25 @@ import React from 'react';
 import PropTypes, { object } from 'prop-types';
 import ProductItemComponent from '../Item';
 
-const ProductListComponent = ({ products }) => {
-    console.log('asdasda', products);
+const ProductListComponent = ({ products, handleClickItem }) => {
     return (
         <React.Fragment>
             {products.map((product) => {
-                return <ProductItemComponent product={product} key={product.id} />;
+                return (
+                    <ProductItemComponent
+                        product={product}
+                        key={product.id}
+                        handleClickItem={handleClickItem}
+                    />
+                );
             })}
         </React.Fragment>
     );
 };
 
 ProductListComponent.propTypes = {
-    products: PropTypes.arrayOf(object)
+    products: PropTypes.arrayOf(object),
+    handleClickItem: PropTypes.func.isRequired
 };
 
 ProductListComponent.defaultProps = {
