@@ -1,4 +1,4 @@
-# Mercado-libre-app
+# Mercado-Libre-Client
 
 > Version 1.0.0.
 
@@ -9,13 +9,13 @@ This application with ReactJs, Bem, Sass, Redux.
 Clone Repository:
 
 ```sh
-git clone https://github.com/bonett/mercado-libre-app.git
+git clone https://github.com/bonett/mercado-libre-client.git
 ```
 
 Enter to root folder:
 
 ```sh
-cd mercado-libre-app
+cd mercado-libre-client
 ```
 
 Install the dependencies:
