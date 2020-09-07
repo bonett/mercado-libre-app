@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
     FETCH_ITEM_REQUEST_DONE,
     FETCH_ITEM_REQUEST_PENDING,
@@ -46,7 +47,7 @@ export const itemReducer = (state = initialState, action) => {
             ...state,
             author: action.payload.author,
             categories: action.payload.categories,
-            items: action.payload.items,
+            items: _.take(action.payload.items, 4),
             error: ''
         };
     case FETCH_ITEM_FAILURE:

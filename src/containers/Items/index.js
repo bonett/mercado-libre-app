@@ -18,9 +18,7 @@ const ItemsContainer = ({
     fetchDataById
 }) => {
     const fetchingData = () => {
-        if (searching !== '') {
-            fetchDataByName(searching);
-        }
+        fetchDataByName(searching);
     };
 
     const dispatchEvents = (id) => {
