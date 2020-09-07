@@ -2,14 +2,19 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-curly-brace-presence */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import BreadcrumbComponent from '../../components/Breadcrumb';
 import ProductListComponent from '../../components/Product/List';
 import SkeletonComponent from '../../components/Skeleton';
-import { itemDetailSelected, fetchDataById } from '../../actions';
+import {
+    itemDetailSelected,
+    fetchDataById,
+    fetchDataByName,
+    statusSearchDone
+} from '../../actions';
 
 const ItemsContainer = ({
     history,
@@ -17,7 +22,11 @@ const ItemsContainer = ({
     items,
     loading,
     getSelectedItem,
-    fetchDataById
+    fetchDataById,
+    fetchDataByName,
+    searching,
+    statusSearchDone,
+    isSearching
 }) => {
     const dispatchEvents = (id) => {
         getSelectedItem(id);
@@ -32,10 +41,19 @@ const ItemsContainer = ({
         }, 500);
     };
 
+    useEffect(() => {
+        if (isSearching) {
+            fetchDataByName(searching);
+            statusSearchDone();
+        }
+    }, [isSearching]);
+
     return (
         <React.Fragment>
             <section className="wrapper__breadcrumb">
-                { items.length > 0 && (<BreadcrumbComponent categories={categories} />)}
+                {items.length > 0 && (
+                    <BreadcrumbComponent categories={categories} />
+                )}
             </section>
             <section>
                 <section className="wrapper">
@@ -64,14 +82,18 @@ const mapStateToProps = (state) => {
     return {
         categories: state.data.categories,
         items: state.data.items,
-        loading: state.data.loading
+        loading: state.data.loading,
+        searching: state.data.searching,
+        isSearching: state.data.isSearching
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getSelectedItem: (id) => dispatch(itemDetailSelected(id)),
-        fetchDataById: (id) => dispatch(fetchDataById(id))
+        fetchDataByName: (searching) => dispatch(fetchDataByName(searching)),
+        fetchDataById: (id) => dispatch(fetchDataById(id)),
+        statusSearchDone: () => dispatch(statusSearchDone())
     };
 };
 

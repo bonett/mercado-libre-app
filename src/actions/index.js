@@ -7,7 +7,9 @@ import {
     GET_SEARCH_VALUE,
     SET_ITEM_SELECTED,
     FETCH_ITEM_DETAIL_SUCCESS,
-    FETCH_ITEM_DETAIL_FAILURE
+    FETCH_ITEM_DETAIL_FAILURE,
+    GET_SEARCH_STATUS,
+    GET_SEARCH_STATUS_REMOVE
 } from '../types';
 
 import { SETTINGS } from '../config/settings';
@@ -22,6 +24,20 @@ export const fetchItemRequestPending = () => {
 export const fetchItemRequestDone = () => {
     return {
         type: FETCH_ITEM_REQUEST_DONE,
+        payload: false
+    };
+};
+
+export const statusSearchPending = () => {
+    return {
+        type: GET_SEARCH_STATUS,
+        payload: true
+    };
+};
+
+export const statusSearchDone = () => {
+    return {
+        type: GET_SEARCH_STATUS_REMOVE,
         payload: false
     };
 };
@@ -93,6 +109,18 @@ export const getSearchValue = (data) => {
 export const itemDetailSelected = (id) => {
     return (dispatch) => {
         dispatch(getItemSelected(id));
+    };
+};
+
+export const getStatusSearchPending = () => {
+    return (dispatch) => {
+        dispatch(statusSearchPending());
+    };
+};
+
+export const getStatusSearchDone = () => {
+    return (dispatch) => {
+        dispatch(statusSearchDone());
     };
 };
 

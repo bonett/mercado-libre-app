@@ -8,24 +8,20 @@ import { withRouter } from 'react-router-dom';
 import NavbarComponent from '../../components/Navbar';
 import {
     getSearchValue,
-    fetchDataByName
+    statusSearchPending
 } from '../../actions';
 
 const HomeContainer = ({
     history,
     searching,
     getSearchValue,
-    fetchDataByName
+    statusSearchPending
 }) => {
-    const dispatchEvents = () => {
-        getSearchValue(searching);
-        fetchDataByName(searching);
-    };
-
     const handleSearchButton = (e) => {
         e.preventDefault();
         if (searching !== '') {
-            dispatchEvents();
+            getSearchValue(searching);
+            statusSearchPending();
             setTimeout(() => {
                 history.push(`/items?query=${searching}`);
             }, 300);
@@ -51,14 +47,15 @@ const HomeContainer = ({
 
 const mapStateToProps = (state) => {
     return {
-        searching: state.data.searching
+        searching: state.data.searching,
+        isSearching: state.data.isSearching
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getSearchValue: (searching) => dispatch(getSearchValue(searching)),
-        fetchDataByName: (searching) => dispatch(fetchDataByName(searching))
+        statusSearchPending: () => dispatch(statusSearchPending())
     };
 };
 

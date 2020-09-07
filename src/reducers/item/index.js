@@ -7,7 +7,9 @@ import {
     GET_SEARCH_VALUE,
     SET_ITEM_SELECTED,
     FETCH_ITEM_DETAIL_SUCCESS,
-    FETCH_ITEM_DETAIL_FAILURE
+    FETCH_ITEM_DETAIL_FAILURE,
+    GET_SEARCH_STATUS,
+    GET_SEARCH_STATUS_REMOVE
 } from '../../types';
 
 const initialState = {
@@ -17,7 +19,8 @@ const initialState = {
     items: [],
     itemSelected: null,
     itemDetail: null,
-    searching: ''
+    searching: '',
+    isSearching: false
 };
 
 export const itemReducer = (state = initialState, action) => {
@@ -26,6 +29,16 @@ export const itemReducer = (state = initialState, action) => {
         return {
             ...state,
             loading: true
+        };
+    case GET_SEARCH_STATUS:
+        return {
+            ...state,
+            isSearching: true
+        };
+    case GET_SEARCH_STATUS_REMOVE:
+        return {
+            ...state,
+            isSearching: false
         };
     case FETCH_ITEM_REQUEST_DONE:
         return {
