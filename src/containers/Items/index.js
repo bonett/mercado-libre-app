@@ -1,28 +1,24 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-curly-brace-presence */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import BreadcrumbComponent from '../../components/Breadcrumb';
 import ProductListComponent from '../../components/Product/List';
 import SkeletonComponent from '../../components/Skeleton';
-import { fetchDataByName, itemDetailSelected, fetchDataById } from '../../actions';
+import { itemDetailSelected, fetchDataById } from '../../actions';
 
 const ItemsContainer = ({
     history,
-    searching,
-    fetchDataByName,
     categories,
     items,
     loading,
     getSelectedItem,
     fetchDataById
 }) => {
-    const fetchingData = () => {
-        fetchDataByName(searching);
-    };
-
     const dispatchEvents = (id) => {
         getSelectedItem(id);
         fetchDataById(id);
@@ -36,14 +32,10 @@ const ItemsContainer = ({
         }, 500);
     };
 
-    useEffect(() => {
-        fetchingData();
-    }, [searching]);
-
     return (
         <React.Fragment>
             <section className="wrapper__breadcrumb">
-                <BreadcrumbComponent categories={categories} />
+                { items.length > 0 && (<BreadcrumbComponent categories={categories} />)}
             </section>
             <section>
                 <section className="wrapper">
@@ -51,10 +43,14 @@ const ItemsContainer = ({
                         <main className="wrapper__content">
                             {loading && <SkeletonComponent />}
                             {!loading && (
-                                <ProductListComponent
-                                    products={items}
-                                    handleClickItem={handleClickItem}
-                                />
+                                <React.Fragment>
+                                    {items.length > 0 && (
+                                        <ProductListComponent
+                                            products={items}
+                                            handleClickItem={handleClickItem}
+                                        />
+                                    )}
+                                </React.Fragment>
                             )}
                         </main>
                     </div>
@@ -66,7 +62,6 @@ const ItemsContainer = ({
 
 const mapStateToProps = (state) => {
     return {
-        searching: state.data.searching,
         categories: state.data.categories,
         items: state.data.items,
         loading: state.data.loading
@@ -75,14 +70,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchDataByName: (search) => dispatch(fetchDataByName(search)),
         getSelectedItem: (id) => dispatch(itemDetailSelected(id)),
         fetchDataById: (id) => dispatch(fetchDataById(id))
     };
 };
 
 ItemsContainer.propTypes = {
-    searching: PropTypes.string.isRequired,
     categories: PropTypes.array.isRequired,
     items: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired

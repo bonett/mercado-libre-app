@@ -1,15 +1,37 @@
+/* eslint-disable no-alert */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-shadow */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import NavbarComponent from '../../components/Navbar';
-import { getSearchValue } from '../../actions';
+import {
+    getSearchValue,
+    fetchDataByName
+} from '../../actions';
 
-const HomeContainer = ({ history, searching, getSearchValue }) => {
+const HomeContainer = ({
+    history,
+    searching,
+    getSearchValue,
+    fetchDataByName
+}) => {
+    const dispatchEvents = () => {
+        getSearchValue(searching);
+        fetchDataByName(searching);
+    };
+
     const handleSearchButton = (e) => {
         e.preventDefault();
-        getSearchValue(searching);
-        history.push(`/items?query=${searching}`);
+        if (searching !== '') {
+            dispatchEvents();
+            setTimeout(() => {
+                history.push(`/items?query=${searching}`);
+            }, 300);
+        } else {
+            alert('Por favor, ingrese un producto ...');
+        }
     };
 
     const handleInputSearch = (e) => {
@@ -35,7 +57,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getSearchValue: (searching) => dispatch(getSearchValue(searching))
+        getSearchValue: (searching) => dispatch(getSearchValue(searching)),
+        fetchDataByName: (searching) => dispatch(fetchDataByName(searching))
     };
 };
 
