@@ -3,6 +3,7 @@
 /* eslint-disable global-require */
 import React from 'react';
 import PropTypes from 'prop-types';
+import transformAmount from '../../../services/transformAmount';
 
 import './style.scss';
 
@@ -32,8 +33,17 @@ const ProductDetailComponent = ({ item }) => {
                 </h6>
                 <h3 className="detail__info_name">{item.title}</h3>
                 <h4 className="detail__info_price">
-                    $
-                    {item.price.amount}
+                    {transformAmount(
+                        item.price.amount,
+                        item.price.currency
+                    )}
+                    <React.Fragment>
+                        {item.price.decimals !== null ? (
+                            <span className="decimals">{item.price.decimals}</span>
+                        ) : (
+                            <span className="decimals">00</span>
+                        )}
+                    </React.Fragment>
                 </h4>
                 <button className="detail__info_btn" type="button">
                     Comprar

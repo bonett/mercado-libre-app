@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import React from 'react';
 import PropTypes from 'prop-types';
+import transformAmount from '../../../services/transformAmount';
 
 import './style.scss';
 
@@ -18,8 +19,17 @@ const ProductItemComponent = ({ product, handleClickItem }) => {
             <div className="item__caption">
                 <h3 className="item__caption_price">
                     <React.Fragment>
-                        <span className="currency">$</span>
-                        {product.price.amount}
+                        {transformAmount(
+                            product.price.amount,
+                            product.price.currency
+                        )}
+                        <React.Fragment>
+                            {product.price.decimals !== null ? (
+                                <span className="decimals">{product.price.decimals}</span>
+                            ) : (
+                                <span className="decimals">00</span>
+                            )}
+                        </React.Fragment>
                     </React.Fragment>
                     <React.Fragment>
                         {product.free_shipping && (
@@ -52,9 +62,9 @@ ProductItemComponent.propTypes = {
         condition: PropTypes.string.isRequired,
         free_shipping: PropTypes.bool.isRequired,
         price: PropTypes.object.isRequired,
-        address: PropTypes.string.isRequired
+        address: PropTypes.string.isRequired,
     }).isRequired,
-    handleClickItem: PropTypes.func.isRequired
+    handleClickItem: PropTypes.func.isRequired,
 };
 
 export default ProductItemComponent;

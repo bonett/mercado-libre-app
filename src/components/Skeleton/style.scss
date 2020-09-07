@@ -2,8 +2,6 @@
 
 .content {
     display: grid;
-    grid-template-areas: "img text pin";
-    grid-template-columns: 180px 1fr 200px;
     padding: 16px;  
     position: relative;
     
@@ -33,15 +31,42 @@
         grid-area: text;
         flex-direction: column;
         justify-content: flex-start;
-        padding: 10px 16px;
 
         div {
             margin-bottom: 12px;
         }
     }
 
+    @media (min-width: 312px) {
+        .caption {
+            padding: 10px 0;
+        }
+    }
+    
+    @media (min-width: 662px) {
+        .caption {
+            padding: 10px 16px;
+        }
+    }
+
     .location {
         grid-area: pin;
         padding: 20px 0;
+    }
+}
+
+@media (min-width: 312px) {
+    .content {
+        grid-template-areas: "img"
+                             "pin"
+                             "text";
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 662px) {
+    .content {
+        grid-template-areas: "img text pin";
+        grid-template-columns: 180px 1fr 200px;
     }
 }
