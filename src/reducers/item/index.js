@@ -9,7 +9,8 @@ import {
     FETCH_ITEM_DETAIL_SUCCESS,
     FETCH_ITEM_DETAIL_FAILURE,
     GET_SEARCH_STATUS,
-    GET_SEARCH_STATUS_REMOVE
+    GET_SEARCH_STATUS_REMOVE,
+    REMOVE_SEARCHING
 } from '../../types';
 
 const initialState = {
@@ -29,6 +30,11 @@ export const itemReducer = (state = initialState, action) => {
         return {
             ...state,
             loading: true
+        };
+    case REMOVE_SEARCHING:
+        return {
+            ...state,
+            searching: action.payload
         };
     case GET_SEARCH_STATUS:
         return {
