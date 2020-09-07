@@ -1,11 +1,10 @@
 @import './../../../theme/utilities/variables.scss';
 
 .item {
+    cursor: pointer;
     display: grid;
-    grid-template-areas: "cover caption location";
-    grid-template-columns: 180px 1fr 200px;
-    padding: 16px;  
-    position: relative;  
+    padding: 16px;
+    position: relative;
 
     &:after {
         content: '';
@@ -30,6 +29,18 @@
             border-radius: 4px;
             height: 180px;
             width: 180px;
+        }
+    }
+
+    @media (min-width: 312px) {
+        &__thumbnail {
+            text-align: center;
+        }
+    }
+    
+    @media (min-width: 662px) {
+        &__thumbnail {
+            text-align: initial;
         }
     }
 
@@ -74,11 +85,38 @@
 
     &__location {
         grid-area: location;
-        padding: 20px 0;
 
         &_origin {
             color: $gray;
             text-transform: capitalize;
         }
+    }
+
+    @media (min-width: 312px) {
+        &__location {
+            padding: 20px 18px;
+        }
+    }
+    
+    @media (min-width: 662px) {
+        &__location {
+            padding: 20px 0;
+        }
+    }
+}
+
+@media (min-width: 312px) {
+    .item {
+        grid-template-areas: "cover"
+                             "location"
+                             "caption";
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 662px) {
+    .item {
+        grid-template-areas: "cover caption location";
+        grid-template-columns: 180px 1fr 200px;
     }
 }
