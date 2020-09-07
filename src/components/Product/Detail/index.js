@@ -49,18 +49,3 @@ ProductDetailComponent.propTypes = {
 };
 
 export default ProductDetailComponent;
-
-/* 
-"item": {
-    "id": "MLA732157031",
-    "title": "Shooter/gatillo Boton Fortnite Y Pubg Android E Ios X Unidad",
-    "price": {
-      "currency": "ARS",
-      "amount": 259,
-      "decimals": 0
-    },
-    "picture": "http://http2.mlstatic.com/D_608932-MLA31132844839_062019-I.jpg",
-    "condition": "new",
-    "free_shipping": false,
-    "description": "Gatillos fortnite y PUBG quedan MUY pocos consultar stock"
-  } */

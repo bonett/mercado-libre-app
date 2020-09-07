@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import NavbarComponent from '../../components/Navbar';
 import { getSearchValue } from '../../actions';
 
 const HomeContainer = ({ history, searching, getSearchValue }) => {
-    const [search, setSearch] = useState('');
-
     const handleSearchButton = (e) => {
         e.preventDefault();
-        getSearchValue(search);
-        history.push(`/items?query=${search}`);
+        getSearchValue(searching);
+        history.push(`/items?query=${searching}`);
     };
 
     const handleInputSearch = (e) => {
-        setSearch(e.target.value);
+        getSearchValue(e.target.value);
     };
 
     return (
@@ -36,8 +35,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getSearchValue: (search) => dispatch(getSearchValue(search))
+        getSearchValue: (searching) => dispatch(getSearchValue(searching))
     };
+};
+
+HomeContainer.propTypes = {
+    searching: PropTypes.string.isRequired
 };
 
 export default connect(

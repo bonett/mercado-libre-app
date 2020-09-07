@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import BreadcrumbComponent from '../../components/Breadcrumb';
 import ProductDetailComponent from '../../components/Product/Detail';
 
@@ -27,6 +28,11 @@ const mapStateToProps = (state) => {
         categories: state.data.categories,
         itemDetail: state.data.itemDetail
     };
+};
+
+DetailsContainer.propTypes = {
+    categories: PropTypes.string.isRequired,
+    itemDetail: PropTypes.any.isRequired
 };
 
 export default connect(mapStateToProps, '')(DetailsContainer);

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-curly-brace-presence */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import BreadcrumbComponent from '../../components/Breadcrumb';
 import ProductListComponent from '../../components/Product/List';
@@ -36,7 +37,7 @@ const ItemsContainer = ({
 
     useEffect(() => {
         fetchingData();
-    }, []);
+    }, [searching]);
 
     return (
         <React.Fragment>
@@ -77,6 +78,13 @@ const mapDispatchToProps = (dispatch) => {
         getSelectedItem: (id) => dispatch(itemDetailSelected(id)),
         fetchDataById: (id) => dispatch(fetchDataById(id))
     };
+};
+
+ItemsContainer.propTypes = {
+    searching: PropTypes.string.isRequired,
+    categories: PropTypes.array.isRequired,
+    items:PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired
 };
 
 export default connect(
