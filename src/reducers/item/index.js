@@ -2,7 +2,8 @@ import _ from 'lodash';
 import {
     FETCH_ITEM_REQUEST,
     FETCH_ITEM_SUCCESS,
-    FETCH_ITEM_FAILURE
+    FETCH_ITEM_FAILURE,
+    GET_SEARCH_VALUE
 } from '../../types';
 
 const initialState = {
@@ -10,15 +11,21 @@ const initialState = {
     author: '',
     categories: [],
     items: [],
-    selectedItem: []
+    selectedItem: [],
+    searching: '',
 };
 
-export const productReducer = (state = initialState, action) => {
+export const itemReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_ITEM_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
+            };
+        case GET_SEARCH_VALUE:
+            return {
+                ...state,
+                searching: action.payload,
             };
         case FETCH_ITEM_SUCCESS:
             return {
@@ -27,7 +34,7 @@ export const productReducer = (state = initialState, action) => {
                 author: action.payload,
                 categories: action.payload,
                 items: action.payload,
-                error: ''
+                error: '',
             };
         case FETCH_ITEM_FAILURE:
             return {
@@ -35,7 +42,7 @@ export const productReducer = (state = initialState, action) => {
                 author: '',
                 categories: [],
                 items: [],
-                error: 'Error'
+                error: 'Error',
             };
         default:
             return state;

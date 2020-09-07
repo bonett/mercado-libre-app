@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import NavbarComponent from '../../components/Navbar';
+import { getSearchValue } from '../../actions';
 
-const HomeContainer = ({ history }) => {
-    const [data, setData] = useState({
-        response: null,
-        searchValue: ''
-    });
+const HomeContainer = ({ history, searching, getSearchValue }) => {
+    const [search, setSearch] = useState('');
 
     const handleSearchButton = (e) => {
         e.preventDefault();
-        history.push(`/items?query=${data.searchValue}`);
+        getSearchValue(search);
+        history.push(`/items?query=${search}`);
     };
 
     const handleInputSearch = (e) => {
-        setData({ searchValue: e.target.value });
+        setSearch(e.target.value);
     };
 
     return (
         <header>
             <NavbarComponent
                 handleInputSearch={handleInputSearch}
-                searchValue={data.searchValue}
+                searchValue={searching}
                 handleSearchButton={handleSearchButton}
             />
         </header>
     );
 };
 
-export default withRouter(HomeContainer);
+const mapStateToProps = state => {
+    return {
+        searching: state.data.searching
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getSearchValue: (search) => dispatch(getSearchValue(search))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomeContainer));
