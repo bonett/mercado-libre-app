@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import BreadcrumbComponent from '../../components/Breadcrumb';
+import BreadcrumbComponent from '../../components/breadcrumb';
 import ProductListComponent from '../../components/Product/List';
 import SkeletonComponent from '../../components/Skeleton';
 import {

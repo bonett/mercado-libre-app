@@ -9,7 +9,8 @@ import {
     FETCH_ITEM_DETAIL_SUCCESS,
     FETCH_ITEM_DETAIL_FAILURE,
     GET_SEARCH_STATUS,
-    GET_SEARCH_STATUS_REMOVE
+    GET_SEARCH_STATUS_REMOVE,
+    REMOVE_SEARCHING
 } from '../types';
 
 import { SETTINGS } from '../config/settings';
@@ -84,6 +85,13 @@ export const fetchItemDetailSuccess = (data) => {
     };
 };
 
+export const removeSearchValue = () => {
+    return {
+        type: REMOVE_SEARCHING,
+        payload: ''
+    };
+};
+
 export const fetchDataByName = (queryString) => {
     return (dispatch) => {
         dispatch(fetchItemRequestPending());
@@ -121,6 +129,12 @@ export const getStatusSearchPending = () => {
 export const getStatusSearchDone = () => {
     return (dispatch) => {
         dispatch(statusSearchDone());
+    };
+};
+
+export const updateSearchValue = () => {
+    return (dispatch) => {
+        dispatch(removeSearchValue());
     };
 };
 

@@ -8,14 +8,16 @@ import { withRouter } from 'react-router-dom';
 import NavbarComponent from '../../components/Navbar';
 import {
     getSearchValue,
-    statusSearchPending
+    statusSearchPending,
+    removeSearchValue
 } from '../../actions';
 
 const HomeContainer = ({
     history,
     searching,
     getSearchValue,
-    statusSearchPending
+    statusSearchPending,
+    removeSearchValue
 }) => {
     const handleSearchButton = (e) => {
         e.preventDefault();
@@ -34,12 +36,20 @@ const HomeContainer = ({
         getSearchValue(e.target.value);
     };
 
+    const handleHomeView = () => {
+        removeSearchValue();
+        setTimeout(() => {
+            history.push('/');
+        }, 300);
+    }
+
     return (
         <header>
             <NavbarComponent
                 handleInputSearch={handleInputSearch}
                 searchValue={searching}
                 handleSearchButton={handleSearchButton}
+                handleHomeClick={handleHomeView}
             />
         </header>
     );
@@ -55,7 +65,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getSearchValue: (searching) => dispatch(getSearchValue(searching)),
-        statusSearchPending: () => dispatch(statusSearchPending())
+        statusSearchPending: () => dispatch(statusSearchPending()),
+        removeSearchValue: () => dispatch(removeSearchValue())
     };
 };
 
