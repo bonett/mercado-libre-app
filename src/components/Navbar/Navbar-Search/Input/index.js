@@ -27,11 +27,11 @@ const InputSearchComponent = ({ handleInputSearch, searchValue }) => {
 
 InputSearchComponent.propTypes = {
     handleInputSearch: PropTypes.func.isRequired,
-    searchValue: PropTypes.string
+    searchValue: PropTypes.string,
 };
 
 InputSearchComponent.defaultProps = {
-    searchValue: ''
+    searchValue: '',
 };
 
 export default InputSearchComponent;
