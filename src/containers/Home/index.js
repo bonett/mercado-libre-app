@@ -38,9 +38,7 @@ const HomeContainer = ({
 
     const handleHomeView = () => {
         removeSearchValue();
-        setTimeout(() => {
-            history.push('/');
-        }, 300);
+        history.push('/');
     }
 
     return (
