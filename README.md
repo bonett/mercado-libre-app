@@ -2,7 +2,7 @@
 
 > Version 1.0.0.
 
-This application with ReactJs, Bem, Sass, Redux.
+This application with ReactJs, Bem, Sass, Redux. 
 
 ## Installation
 
