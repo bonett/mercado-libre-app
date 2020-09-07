@@ -4,34 +4,57 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const ProductItemComponent = () => {
+const ProductItemComponent = ({ product, handleClickItem }) => {
     const shippingIcon = require('../../../assets/img/ic_shipping@2x.png.png.png');
     return (
-        <article className="item">
+        <article className="item" onClick={() => handleClickItem(product)}>
             <div className="item__thumbnail">
-                <img className="item__thumbnail_image" src="https://zoomcart.net/wp-content/uploads/2020/02/H7480c80cdc03498ca814137e62727df12.jpg" alt="Zapato" />
+                <img
+                    className="item__thumbnail_image"
+                    src={product.picture}
+                    alt={product.title}
+                />
             </div>
             <div className="item__caption">
                 <h3 className="item__caption_price">
-                    $ 1.980
-                    <span>
-                        <img src={shippingIcon} alt="shiping_car" className="icon-xs" />
-                    </span>
+                    <React.Fragment>
+                        <span className="currency">$</span>
+                        {product.price.amount}
+                    </React.Fragment>
+                    <React.Fragment>
+                        {product.free_shipping && (
+                            <span className="icon">
+                                <img
+                                    src={shippingIcon}
+                                    alt="shiping_car"
+                                    className="icon-xs"
+                                />
+                            </span>
+                        )}
+                    </React.Fragment>
                 </h3>
-                <h2 className="item__caption_title">
-                    Apple Ipod touch 5g 16gb Negro Igual A Nuevo
-                </h2>
+                <h2 className="item__caption_title">{product.title}</h2>
                 <h2 className="item__caption_reference">
-                    Completo Unico!
+                    {product.condition}!
                 </h2>
             </div>
             <div className="item__location">
-                <h6 className="item__location_origin">Capital Federal</h6>
+                <h6 className="item__location_origin">{product.address}</h6>
             </div>
         </article>
     );
 };
 
-ProductItemComponent.propTypes = {};
+ProductItemComponent.propTypes = {
+    product: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        picture: PropTypes.string.isRequired,
+        condition: PropTypes.string.isRequired,
+        free_shipping: PropTypes.bool.isRequired,
+        price: PropTypes.object.isRequired,
+        address: PropTypes.string.isRequired
+    }).isRequired,
+    handleClickItem: PropTypes.func.isRequired
+};
 
 export default ProductItemComponent;

@@ -1,3 +1,4 @@
+/* eslint-disable react/default-props-match-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import LogoComponent from './Navbar-Logo';
@@ -5,7 +6,7 @@ import SearchComponent from './Navbar-Search';
 
 import './style.scss';
 
-const NavbarComponent = ({ handleInputSearch }) => {
+const NavbarComponent = ({ handleInputSearch, handleSearchButton, searchValue }) => {
     return (
         <nav className="navbar">
             <div className="container">
@@ -14,7 +15,11 @@ const NavbarComponent = ({ handleInputSearch }) => {
                         <LogoComponent />
                     </div>
                     <div className="navbar__form">
-                        <SearchComponent handleInputSearch={handleInputSearch} />
+                        <SearchComponent
+                            handleInputSearch={handleInputSearch}
+                            searchValue={searchValue}
+                            handleSearchButton={handleSearchButton}
+                        />
                     </div>
                 </div>
             </div>
@@ -23,7 +28,13 @@ const NavbarComponent = ({ handleInputSearch }) => {
 };
 
 NavbarComponent.propTypes = {
-    handleInputSearch: PropTypes.func.isRequired
+    handleInputSearch: PropTypes.func.isRequired,
+    handleSearchButton: PropTypes.func.isRequired,
+    searchValue: PropTypes.string
+};
+
+NavbarComponent.defaultProps = {
+    searchValue: ''
 };
 
 export default NavbarComponent;

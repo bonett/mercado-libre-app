@@ -8,9 +8,9 @@ const SkeletonComponent = () => {
     return (
         <React.Fragment>
             {
-                loaders.map(() => {
+                loaders.map((item) => {
                     return (
-                        <div className="content">
+                        <div className="content" key={item}>
                             <div className="media">
                                 <Skeleton height={180} />
                             </div>

@@ -1,3 +1,3 @@
-const settings = {
-    API_PATH: 'url'
+export const SETTINGS = {
+    API_PATH: 'http://localhost:7000/'
 };

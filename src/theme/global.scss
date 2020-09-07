@@ -7,7 +7,18 @@ body {
   font-family: $source;
   font-size: 14px;
   line-height: 1.42857143;
-  overflow-x: hidden !important
+}
+
+@media (min-width: 312px) {
+  body {
+    overflow-x: scroll
+  }
+}
+
+@media (min-width: 992px) {
+  body {
+      overflow-x: hidden !important;
+  }
 }
 
 * {
@@ -37,6 +48,13 @@ input[type="search"] {
   appearance: none;
 }
 
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
 .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -62,16 +80,20 @@ input[type="search"] {
   }
 }
 
+header {
+  width: 100% !important;
+}
+
 .wrapper {
   &__breadcrumb {
       margin: 16px 0;
   }
 
   &__content {
-      background-color: $white;
-      border-radius: 4px;
-      box-shadow: $shadow;
-      margin-bottom: 60px;
+    background-color: $white;
+    border-radius: 4px;
+    box-shadow: $shadow;
+    margin-bottom: 60px;
   }
 }
 
