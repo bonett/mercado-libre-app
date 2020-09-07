@@ -7,6 +7,7 @@ import './style.scss';
 
 const InputSearchComponent = ({ handleInputSearch, searchValue }) => {
     const search = require('../../../../assets/img/ic_Search@2x.png.png.png');
+    console.log(searchValue)
     return (
         <div className="form-control">
             <input
@@ -16,7 +17,7 @@ const InputSearchComponent = ({ handleInputSearch, searchValue }) => {
                 maxLength="120"
                 autoComplete="off"
                 onChange={handleInputSearch}
-                defaultValue={searchValue}
+                value={searchValue}
             />
             <button type="submit" className="form-control_btn">
                 <img className="icon" src={search} alt="search" />
