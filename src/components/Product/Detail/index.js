@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable global-require */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -20,16 +21,24 @@ const ProductDetailComponent = ({ item }) => {
                         Descripción del producto
                     </h2>
                     <p className="detail__media__description_paragraph">
-                       {item.description}
+                        {item.description}
                     </p>
                 </div>
             </section>
             <aside className="detail__info">
                 <h6 className="detail__info_shell">
-                    {item.condition} - {item.sold_quantity} Vendidos
-</h6>
+                    {item.condition}
+                    {' '}
+                    -
+                    {item.sold_quantity}
+                    {' '}
+                    Vendidos
+                </h6>
                 <h3 className="detail__info_name">{item.title}</h3>
-                <h4 className="detail__info_price">$ {item.price.amount}</h4>
+                <h4 className="detail__info_price">
+                    $
+                    {item.price.amount}
+                </h4>
                 <button className="detail__info_btn" type="button">
                     Comprar
                 </button>

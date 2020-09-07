@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-curly-brace-presence */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -83,7 +84,7 @@ const mapDispatchToProps = (dispatch) => {
 ItemsContainer.propTypes = {
     searching: PropTypes.string.isRequired,
     categories: PropTypes.array.isRequired,
-    items:PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired
 };
 
