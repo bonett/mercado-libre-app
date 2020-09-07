@@ -1,7 +1,7 @@
 import axios from 'axios';
-import _ from 'lodash';
 import {
-    FETCH_ITEM_REQUEST,
+    FETCH_ITEM_REQUEST_DONE,
+    FETCH_ITEM_REQUEST_PENDING,
     FETCH_ITEM_SUCCESS,
     FETCH_ITEM_FAILURE,
     GET_SEARCH_VALUE
@@ -9,52 +9,54 @@ import {
 
 import { SETTINGS } from '../config/settings';
 
-export const fetchItemRequest = () => {
+export const fetchItemRequestPending = () => {
     return {
-        type: FETCH_ITEM_REQUEST,
+        type: FETCH_ITEM_REQUEST_PENDING,
+        payload: true
     };
 };
 
-export const fetchArticlesSuccess = (items) => {
+export const fetchItemRequestDone = () => {
+    return {
+        type: FETCH_ITEM_REQUEST_DONE,
+        payload: false
+    };
+};
+
+export const fetchItemSuccess = (data) => {
     return {
         type: FETCH_ITEM_SUCCESS,
-        payload: items,
+        payload: data
     };
 };
 
-export const fetchArticlesFailure = (error) => {
+export const fetchItemFailure = (error) => {
     return {
         type: FETCH_ITEM_FAILURE,
-        payload: error,
+        payload: error
     };
 };
 
 export const searchValue = (data) => {
     return {
         type: GET_SEARCH_VALUE,
-        payload: data,
+        payload: data
     };
 };
 
 export const fetchDataByName = (queryString) => {
     return (dispatch) => {
+        dispatch(fetchItemRequestPending());
         axios
             .get(`${SETTINGS.API_PATH}items?q=${queryString}`)
             .then((response) => {
                 console.log(response);
-                /* if(response) {
-                    const result   = response && response.data,
-                        dataList = result && result.articles,
-                        articles = dataList && dataList.results;
-                        
-                    dispatch(loadMoreEnabled(false));
-                    dispatch(fetchArticlesSuccess(articles));
-                } */
+                dispatch(fetchItemSuccess(response.data));
+                dispatch(fetchItemRequestDone());
             })
             .catch((error) => {
-                console.log(error);
-                /* const errorMessage = error.message;
-                dispatch(FETCH_ARTICLES_FAILURE(errorMessage)); */
+                dispatch(fetchItemFailure(error));
+                dispatch(fetchItemRequestDone());
             });
     };
 };
