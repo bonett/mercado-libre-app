@@ -2,8 +2,6 @@
 
 .detail {
     display: grid;
-    grid-template-areas: "main aside";
-    grid-template-columns: 1fr 300px;
     padding: 32px;
     position: relative;  
 
@@ -19,9 +17,25 @@
             
             &_image {
                 border-radius: 4px;
-                height: 620px;
-                padding: 0 32px 0 0;
-                width: auto; 
+                width: 100%; 
+            }
+
+            @media (min-width: 312px) {
+                &_image {
+                    height: 260px;
+                }
+            }
+
+            @media (min-width: 580px) {
+                &_image {
+                    height: 480px;
+                }
+            }
+        
+            @media (min-width: 992px) {
+                &_image {
+                    height: 620px;
+                }
             }
         }
 
@@ -37,8 +51,31 @@
             &_paragraph {
                 color: $gray;
                 font-size: 16px;
-                padding: 0 32px 0 0
             }
+
+            @media (min-width: 312px) {
+                &_paragraph {
+                    text-align: justify;
+                }
+            }
+        
+            @media (min-width: 992px) {
+                &_paragraph {
+                    text-align: initial;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 312px) {
+        &__media {
+            padding: 0;
+        }
+    }
+
+    @media (min-width: 992px) {
+        &__media {
+            padding: 0 32px 0 0;
         }
     }
 
@@ -73,5 +110,32 @@
             text-transform: captalize;
             width: 100%;
         }
+    }
+
+    @media (min-width: 312px) {
+        &__info {
+           margin-top: 40px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        &__info {
+           margin-top: 0;
+        }
+    }
+}
+
+@media (min-width: 312px) {
+    .detail {
+        grid-template-areas: "main"
+                             "aside";
+        grid-template-columns: 1fr;
+    }
+}
+  
+  @media (min-width: 992px) {
+    .detail {
+        grid-template-areas: "main aside";
+        grid-template-columns: 1fr 284px;
     }
 }

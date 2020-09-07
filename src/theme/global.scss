@@ -80,6 +80,10 @@ input[type="search"]::-webkit-search-results-decoration {
   }
 }
 
+header {
+  width: 100% !important;
+}
+
 .wrapper {
   &__breadcrumb {
       margin: 16px 0;
@@ -90,18 +94,6 @@ input[type="search"]::-webkit-search-results-decoration {
     border-radius: 4px;
     box-shadow: $shadow;
     margin-bottom: 60px;
-  }
-
-  @media (min-width: 312px) {
-    &__content {
-      width: 700px !important;
-    }
-  }
-
-  @media (min-width: 992px) {
-    &__content {
-      width: 100% !important;
-    }
   }
 }
 

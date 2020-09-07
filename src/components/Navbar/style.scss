@@ -11,19 +11,6 @@
         grid-template-columns: 100px 12fr;
     }
 
-    @media (min-width: 312px) {
-        &__content {
-            width: 700px !important;
-        }
-    }
-
-    @media (min-width: 992px) {
-        &__content {
-            width: 100% !important;
-            grid-template-columns: 100px 12fr;
-        }
-    }
-
     &__logo {
         align-content: center;
         grid-area: logo;
