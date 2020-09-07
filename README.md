@@ -33,7 +33,7 @@ To run project
 With npm: 
 
 ```sh
-npm run start
+npm start
 ```
 
 
