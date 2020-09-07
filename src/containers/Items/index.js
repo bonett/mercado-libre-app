@@ -2,10 +2,11 @@
 import React from 'react';
 import PropTypes, { object } from 'prop-types';
 import { Link } from 'react-router-dom';
-import BreadcrumbComponent from '../Breadcrumb';
-import ProductListComponent from '../Product/List';
+import BreadcrumbComponent from '../../components/Breadcrumb';
+import ProductListComponent from '../../components/Product/List';
+import SkeletonComponent from '../../components/Skeleton';
 
-const ItemsComponent = ({ products }) => {
+const ItemsContainer = ({ products }) => {
     return (
         <React.Fragment>
             <section className="wrapper__breadcrumb">
@@ -16,7 +17,8 @@ const ItemsComponent = ({ products }) => {
                     <div className="container">
                         <Link to={'items/123'}>Go toDetails</Link>
                         <main className="wrapper__content">
-                            <ProductListComponent products={products} />
+                            {/* <ProductListComponent products={products} /> */}
+                            <SkeletonComponent />
                         </main>
                     </div>
                 </section>
@@ -25,12 +27,12 @@ const ItemsComponent = ({ products }) => {
     );
 };
 
-ItemsComponent.propTypes = {
+ItemsContainer.propTypes = {
     products: PropTypes.arrayOf(object),
 };
 
-ItemsComponent.defaultProps = {
+ItemsContainer.defaultProps = {
     products: [],
 };
 
-export default ItemsComponent;
+export default ItemsContainer;

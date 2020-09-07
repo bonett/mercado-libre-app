@@ -1,8 +1,8 @@
 import React from 'react';
-import BreadcrumbComponent from '../Breadcrumb';
-import ProductDetailComponent from '../Product/Detail';
+import BreadcrumbComponent from '../../components/Breadcrumb';
+import ProductDetailComponent from '../../components/Product/Detail';
 
-const DetailsComponent = () => {
+const DetailsContainer = () => {
     return (
         <React.Fragment>
             <section className="wrapper__breadcrumb">
@@ -21,4 +21,4 @@ const DetailsComponent = () => {
     );
 };
 
-export default DetailsComponent;
+export default DetailsContainer;

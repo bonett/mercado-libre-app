@@ -1,20 +1,12 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
-import axios from 'axios';
-import HomeComponent from '../components/Home';
-import ItemsComponent from '../components/Items';
-import DetailsComponent from '../components/Details';
-import SkeletonComponent from '../components/Skeleton';
+/* eslint-disable react/jsx-curly-brace-presence */
+import React from 'react';
+import { Route, BrowserRouter, Redirect } from 'react-router-dom';
+import HomeContainer from './Home';
+import ItemsContainer from './Items';
+import DetailsContainer from './Details';
 
 const AppContainer = () => {
-    const [data, setData] = useState({
-        response: null,
-        isLoading: false,
-        searchValue: '',
-        selectedItem: null,
-    });
-
-    const loadItems = useCallback(() => {
+/*  const loadItems = useCallback(() => {
         console.log(data.searchValue);
         const { queryString } = data.searchValue;
         axios
@@ -28,12 +20,12 @@ const AppContainer = () => {
                 }
             });
     }, []);
-
+ */
     /*  useEffect(() => {
         loadItems();
     }, []); */
 
-    const handleSelectedItem = () => {
+/*     const handleSelectedItem = () => {
         const item = {
             id: 'MLA862830072',
             title:
@@ -56,50 +48,31 @@ const AppContainer = () => {
 
     const handleSearchButton = (e) => {
         e.preventDefault();
-        /* handleSelectedItem(); */
+        handleSelectedItem();
         setData({ isLoading: true });
         loadItems();
     };
 
     const handleInputSearch = (e) => {
         setData({ searchValue: e.target.value });
-        console.log(data.searchValue)
-    };
+        console.log(data.searchValue);
+    }; */
 
     return (
         <section>
             <BrowserRouter>
                 <React.Fragment>
+                    <Route path="" component={() => <HomeContainer />} />
                     <Route
-                        path=""
-                        component={() => (
-                            <HomeComponent
-                                handleInputSearch={handleInputSearch}
-                                searchValue={data.searchValue}
-                                handleSearchButton={handleSearchButton}
-                            />
-                        )}
+                        exact
+                        path="/items"
+                        component={() => <ItemsContainer />}
                     />
-                    {!data.isLoading && (
-                        <React.Fragment>
-                            {data.response && (
-                                <Route
-                                    exact
-                                    path="/items?search="
-                                    component={() => (
-                                        <ItemsComponent
-                                            products={data.response.items}
-                                        />
-                                    )}
-                                />
-                            )}
-                        </React.Fragment>
-                    )}
-                    {data.isLoading && <SkeletonComponent />}
                     <Route
                         path="/items/:id"
-                        component={() => <DetailsComponent />}
+                        component={() => <DetailsContainer />}
                     />
+                    <Redirect to={'/'}/>
                 </React.Fragment>
             </BrowserRouter>
         </section>
