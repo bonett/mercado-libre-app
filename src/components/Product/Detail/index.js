@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
 /* eslint-disable global-require */
 import React from 'react';
@@ -27,12 +28,7 @@ const ProductDetailComponent = ({ item }) => {
             </section>
             <aside className="detail__info">
                 <h6 className="detail__info_shell">
-                    {item.condition}
-                    {' '}
-                    -
-                    {item.sold_quantity}
-                    {' '}
-                    Vendidos
+                    {item.condition} - {item.sold_quantity} Vendidos
                 </h6>
                 <h3 className="detail__info_name">{item.title}</h3>
                 <h4 className="detail__info_price">
