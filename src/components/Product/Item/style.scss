@@ -57,9 +57,10 @@
             font-size: 24px;
             margin-bottom: 22px;
 
-            .currency {
-                vertical-align: bottom;
-                margin-right: 5px;
+            .decimals {
+                font-size: 0.6em !important;
+                margin-left: 2px;
+                vertical-align: super;
             }
 
             .icon {
